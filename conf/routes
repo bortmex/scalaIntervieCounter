@@ -28,7 +28,7 @@ GET           /api/students                       controllers.StudentController.
 GET           /api/student/editStudent/:id        controllers.StudentController.editStudent(id: Long)
 POST          /api/student/update/:id             controllers.StudentController.update(id: Long)
 #TODO с delete чет не пашет
-GET        /api/student/delete/:id             controllers.StudentController.deleteStudent(id: Long)
+GET           /api/student/delete/:id             controllers.StudentController.deleteStudent(id: Long)
 POST          /api/student/add                    controllers.StudentController.add
 GET           /api/student/addStudent             controllers.StudentController.addStudent
 
