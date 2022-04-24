@@ -13,10 +13,10 @@ object StudentForm {
         .verifying("Количество собеседований не может быть меньше 0", s => lengthIsGreaterThanNInt(s, 0))
         .verifying("Очень сомневаюсь что ты смог побывать на собеседованиях больше чем 10миллионов раз", s => lengthIsLessThanNInt(s, 10000000)),
       "javaRushLevel" -> number
-        .verifying("Уровень JavaRush не может быть меньше 0", s => lengthIsGreaterThanNInt(s, 0))
+        .verifying("Уровень JavaRush не может быть меньше 0", s => lengthIsGreaterThanNInt(s, 1))
         .verifying("Уровень JavaRush не может быть больше 41", s => lengthIsLessThanNInt(s, 10000000)),
       "chanceToComplete" -> number
-        .verifying("Шанс комплита не может быть меньше 0", s => lengthIsGreaterThanNInt(s, 0))
+        .verifying("Шанс комплита не может быть меньше 0", s => lengthIsGreaterThanNInt(s, 1))
         .verifying("Шанс комплита не может быть больше 100", s => lengthIsLessThanNInt(s, 100))
     )(StudentFormData.apply)(StudentFormData.unapply))
 
@@ -29,7 +29,7 @@ object StudentForm {
   }
 
   private def lengthIsGreaterThanNInt(s: Int, n: Int): Boolean = {
-    if (s > n) true else false
+    if (s >= n) true else false
   }
 
   private def lengthIsLessThanNInt(s: Int, n: Int): Boolean = {

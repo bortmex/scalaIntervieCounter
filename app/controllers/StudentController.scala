@@ -37,7 +37,7 @@ class StudentController @Inject()(
       // if any error in submitted data
       errorForm => {
         errorForm.errors.foreach(println)
-        Future.successful(BadRequest("Error!"))
+        Future.successful(BadRequest("Error!" + System.lineSeparator() + errorForm.errors.head.message))
       },
       data => {
         val todoItem = Student(0, data.name, data.intervieCounter, data.javaRushLevel, data.chanceToComplete)
@@ -75,7 +75,7 @@ class StudentController @Inject()(
         // if any error in submitted data
         errorForm => {
           errorForm.errors.foreach(println)
-          Future.successful(BadRequest("Error!"))
+          Future.successful(BadRequest("Error!" + System.lineSeparator() + errorForm.errors.head.message))
         },
         data => {
           val todoItem = Student(id, data.name, data.intervieCounter, data.javaRushLevel, data.chanceToComplete)
