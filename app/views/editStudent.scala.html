@@ -1,0 +1,79 @@
+@(
+        form: Form[formz.StudentFormData],
+        postUrl: Call
+)(implicit request: MessagesRequestHeader)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+    </head>
+
+    <body id="student-edit">
+        <div id="content1">
+
+            <div id="student-edit-form">
+
+                <h1>Edit Student Pliz</h1>
+
+                @request.flash.data.map{ case (name, value) =>
+                <div>@name: @value</div>
+                }
+
+                @* Global errors are not tied to any particular form field *@
+                @if(form.hasGlobalErrors) {
+                    @form.globalErrors.map { error: FormError =>
+                        <div>
+                            Error: @error.key: @error.message
+                        </div>
+                    }
+                }
+
+                @helper.form(postUrl, Symbol("id") -> "student-edit-form") {
+
+                    @helper.CSRF.formField
+
+                    @helper.inputText(
+                        form("name"),
+                        Symbol("_label") -> "Имя",
+                        Symbol("placeholder") -> "Имя",
+                        Symbol("id") -> "name",
+                        Symbol("size") -> 60
+                    )
+
+                    @helper.inputText(
+                        form("intervieCounter"),
+                        Symbol("_label") -> "Количество собеседований",
+                        Symbol("placeholder") -> "Количество собеседований",
+                        Symbol("id") -> "intervieCounter",
+                        Symbol("size") -> 60
+                    )
+
+                    @helper.inputText(
+                        form("javaRushLevel"),
+                        Symbol("_label") -> "Уровень JavaRush",
+                        Symbol("placeholder") -> "Уровень JavaRush",
+                        Symbol("id") -> "javaRushLevel",
+                        Symbol("size") -> 60
+                    )
+
+                    @helper.inputText(
+                        form("chanceToComplete"),
+                        Symbol("_label") -> "Шанс стать настоящим Джуном",
+                        Symbol("placeholder") -> "Шанс стать настоящим Джуном",
+                        Symbol("id") -> "chanceToComplete",
+                        Symbol("size") -> 60
+                    )
+
+                    <button>Применить</button>
+
+                }
+
+            </div>
+
+        </div>
+
+    </body>
+</html>
+
+

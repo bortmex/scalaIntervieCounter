@@ -1,0 +1,113 @@
+@import entity.Student
+@(access: Boolean, logoutUrl: Call, edit: ReverseStudentController, students: Seq[Student])(implicit flash: Flash)
+
+@mainNew("Welcome Ж(д)униоры") {
+
+@*    @if(access) {*@
+@*        <div>*@
+@*            <a href="@logoutUrl">logout</a>*@
+@*        </div>*@
+@*        <div>*@
+@*            <a href="@edit.addStudent">Добавить Ждуна</a>*@
+@*        </div>*@
+@*    }*@
+@*    *@
+@*    <h1>Welcome Ж(д)униоры!</h1>*@
+@*    *@@* show the flash message (Option 1) *@
+@*    @flash.get("info").getOrElse("")*@
+
+@*    <div class="table-responsive">*@
+@*        <table id="roles_table" class="table table-striped">*@
+@*            <thead>*@
+@*                <tr>*@
+@*                    <th>Ж(д)униор</th>*@
+@*                    <th>Количество собеседований</th>*@
+@*                    <th>Левел на JavaRush</th>*@
+@*                    @if(access) {*@
+@*                        <th></th>*@
+@*                        <th></th>*@
+@*                    }*@
+@*                </tr>*@
+
+@*            </thead>*@
+@*            <tbody>*@
+
+@*            @for(student <- students) {*@
+@*                <tr>*@
+@*                    <td>@student.name</td>*@
+@*                    <td>@student.intervieCounter</td>*@
+@*                    <td>@student.javaRushLevel</td>*@
+@*                    @if(access) {*@
+@*                        <td><a href="@edit.editStudent(student.id)">Редактировать</a></td>*@
+@*                        <td><a href="@edit.delete(student.id)">Удалить</a></td>*@
+@*                    }*@
+@*                </tr>*@
+@*            }*@
+
+@*            </tbody>*@
+@*        </table>*@
+@*    </div>*@
+
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h2>Welcome <b>Ж(д)униоры!</b></h2>
+                        </div>
+                        @if(access) {
+                        <div class="col-xs-6">
+                            <a href="@edit.addStudent" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>
+                                Добавить Ждуна</span></a>
+                            <a href="@logoutUrl" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>
+                                Логаут</span></a>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%">Ж(д)униор</th>
+                            <th style="width: 20%">Количество собеседований</th>
+                            <th style="width: 20%">Левел на JavaRush</th>
+                            <th style="width: 20%">Шанс стать настоящим Джуном</th>
+                            @if(access) {
+                                <th>Actions</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(student <- students) {
+                        <tr>
+                            <td>@student.name</td>
+                            <td>@student.intervieCounter</td>
+                            <td>@student.javaRushLevel</td>
+                            <td>@student.chanceToComplete %</td>
+                            @if(access) {
+                                <td>
+                                    <a href="@edit.editStudent(student.id)" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="@edit.deleteStudent(student.id)" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+@*                <div class="clearfix">*@
+@*                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>*@
+@*                    <ul class="pagination">*@
+@*                        <li class="page-item disabled"><a href="#">Previous</a></li>*@
+@*                        <li class="page-item"><a href="#" class="page-link">1</a></li>*@
+@*                        <li class="page-item"><a href="#" class="page-link">2</a></li>*@
+@*                        <li class="page-item active"><a href="#" class="page-link">3</a></li>*@
+@*                        <li class="page-item"><a href="#" class="page-link">4</a></li>*@
+@*                        <li class="page-item"><a href="#" class="page-link">5</a></li>*@
+@*                        <li class="page-item"><a href="#" class="page-link">Next</a></li>*@
+@*                    </ul>*@
+@*                </div>*@
+            </div>
+        </div>
+    </div>
+}
