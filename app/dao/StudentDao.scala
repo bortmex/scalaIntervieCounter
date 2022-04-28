@@ -36,8 +36,8 @@ class StudentDao @Inject()(
   def update(student: Student): Future[Int] = {
     dbConfig.db
       .run(studentTable.filter(_.id === student.id)
-        .map(x => (x.name, x.intervieCounter, x.javaRushLevel))
-        .update(student.name, student.intervieCounter, student.javaRushLevel)
+        .map(x => (x.name, x.intervieCounter, x.javaRushLevel, x.chanceToComplete))
+        .update(student.name, student.intervieCounter, student.javaRushLevel, student.chanceToComplete)
       )
   }
 
